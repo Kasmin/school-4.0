@@ -2,7 +2,7 @@
 {
     public interface IDiscount
     {
-        int CalculateDiscountPrice();
+        void CalculateDiscountPrice();
         string GetSellInformation();
     }
 }

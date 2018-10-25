@@ -58,6 +58,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Discount.cs" />
+    <Compile Include="DiscountAmount.cs" />
+    <Compile Include="DiscountPercent.cs" />
     <Compile Include="IDiscount.cs" />
     <Compile Include="Product.cs" />
     <Compile Include="Program.cs" />
