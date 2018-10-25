@@ -18,6 +18,37 @@ namespace DiscountСalculator
             Console.ReadLine();
         }
 
+        private static void ChooseDiscount(Product product)
+        {
+            Console.WriteLine("Выберите тип скидки:");
+            Console.WriteLine("1 - Подарочная карта");
+            Console.WriteLine("2 - % от стоимости");
+            Console.WriteLine("3 - сумма от стоимости");
+
+            var discount = new Discount();
+
+            int.TryParse(Console.ReadLine(), out var answer);
+            //            Console.WriteLine(CreateDiscount(answer));
+
+            
+            
+            product.Price = discount.CalculateDiscountPrice(product.Price);
+
+            product.StartSellDate = discount.CalculateDateStart();
+
+            product.EndSellDate = discount.CalculateDateEnd();
+        }
+/*
+        private static void CreateDiscount(int typeOfDiscount)
+        {
+            if(typeOfDiscount == 1)
+            {
+                var discountCard = new DiscountCard();
+                discount.Name = discountCard.Name;
+            }
+           
+        }
+*/
         private static void CreateProduct()
         {
             var product = new Product();
@@ -39,36 +70,9 @@ namespace DiscountСalculator
 
             product.Price = price;
 
-            Console.WriteLine("Введите значение скидки на товар (в % от общей стоимости)");
+            ChooseDiscount(product);
 
-            int.TryParse(Console.ReadLine(), out var discountValue);
-
-            while (discountValue > 100)
-            {
-                Console.WriteLine("Значение скидки не может быть больше 100");
-
-                int.TryParse(Console.ReadLine(), out discountValue);
-            }
-
-            product.DiscountValue = discountValue;
-
-            Console.WriteLine("Введите дату начала действия скидки");
-
-            DateTime.TryParse(Console.ReadLine(), out var startSellDate);
-
-            if (startSellDate != DateTime.MinValue)
-            {
-                product.StartSellDate = startSellDate;
-            }
-
-            Console.WriteLine("Введите дату окончания действия скидки");
-
-            DateTime.TryParse(Console.ReadLine(), out var endSellDate);
-
-            if (endSellDate != DateTime.MinValue)
-            {
-                product.EndSellDate = endSellDate;
-            }
+            
 
             Console.WriteLine($"Вы успешно добавили новый продукт: {product.Name}, стоимость - {product.Price}р. {product.GetSellInformation()}");
         }
